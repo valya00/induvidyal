@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портал лабораторних 7–10</title>
+
+    <link rel="stylesheet" href="lr13.css">
+    <script src="jquery-3.7.1.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+<header class="header">
+    <h1>Лабораторні роботи №7–10</h1>
+    <input id="search" placeholder="Пошук...">
+</header>
+<main>
+    <div id="apps" class="cards">
+<!-- ЛР7 -->
+<div class="card app" data-title="динамічна сторінка javascript lr7">
+<h3>Лабораторна №7</h3>
+<p>JavaScript. Динамічна вебсторінка.</p>
+<a href="https://valya00.github.io/LR7-2-/" target="_blank" class="btn">Відкрити</a>
+<button class="info" data-title="ЛР7" data-text="Створення динамічного контенту, взаємодія з DOM, події.
+Завдання: Магічна куля. Побудувати динамічну вебсторінку використовуючи лише JavaScript (тег body файлу html порожній) згідно з прикладом. Врахувати валідацію та адаптивність.">Детальніше</button>
+</div>
+<!-- ЛР8 -->
+<div class="card app" data-title="javascript гра lr8 game проста">
+<h3>Лабораторна №8</h3>
+<p>JavaScript. Проста гра.</p>
+<a href="https://valya00.github.io/LR8-2/" target="_blank" class="btn">Відкрити</a>
+<button class="info" data-title="ЛР8" data-text="Розробка невеликої гри. Події, логіка, випадкові значення.
+Завдання: В кого більше число.
+Користувач vs комп’ютер.
+Під час завантаження сторінки користувач вводить ім’я (prompt). Випадковим чином (random) генеруються цілі числа для обох гравців. Бал нараховується тому, в кого число більше. Гра триває до 3 премог. Врахувати валідацію та адаптивність.">Детальніше</button>
+</div>
+<!-- ЛР9 -->
+<div class="card app" data-title="javascript css стилі lr9 маніпуляція">
+<h3>Лабораторна №9</h3>
+<p>Маніпулювання стилями CSS.</p>
+<a href="https://valya00.github.io/LR9/" target="_blank" class="btn">Відкрити</a>
+<button class="info" data-title="ЛР9" data-text="Зміна стилів, анімації, додавання/видалення класів.
+Завдання:
+Користувач vs комп’ютер. Під час завантаження сторінки користувач вводить ім’я (prompt). Випадковим чином (random) для кожного гравця «випадають» карти певного номіналу. Після 3 ітерацій виграє той, в кого більша сумарна кількість очок. Врахувати валідацію та адаптивність.">Детальніше</button>
+</div>
+<!-- ЛР10 -->
+<div class="card app" data-title="javascript css3 lr10">
+<h3>Лабораторна №10</h3>
+<p>JS + CSS3. Ефекти та анімації.</p>
+<a href="https://valya00.github.io/LR10/" target="_blank" class="btn">Відкрити</a>
+<button class="info" data-title="ЛР10" data-text="JS керує CSS3 ефектами, інтерактив та анімації.
+Завдання: Гра «Однорукий бандит».
+Під час завантаження сторінки користувач вводить ім’я (prompt). Випадковим чином (random) в кожній лінії з’являються картинки (по вертикалі не повторюються). Перемагає користувач якщо протягом 3 ітерацій «випаде» ряд однакових картинок. Врахувати валідацію та адаптивність.">Детальніше</button>
+</div>
+</div>
+</main>
+<div id="modal">
+<div id="modal-window">
+<span id="close">✖</span>
+<h2 id="modal-title"></h2>
+<p id="modal-text"></p>
+</div>
+</div>
+<script>
+$(document).ready(function() {
+$('.info').on('click', function() {
+let card = $(this).closest('.app');
+let title = $(this).attr('data-title') || card.attr('data-title'); 
+let text = $(this).attr('data-text') || card.attr('data-text');
+$('#modal-title').text(title);
+$('#modal-text').text(text);
+$('#modal').fadeIn(200); 
+});
+$('#close, #modal').on('click', function(e) {
+if (e.target.id === 'close' || e.target.id === 'modal') {
+$('#modal').fadeOut(200);
+}
+});
+});
+$(document).ready(function() {
+    $('#search').on('input', function() {
+        let query = $(this).val().toLowerCase();
+
+        $('.app').each(function() {
+            let title = $(this).data('title').toLowerCase();
+            let text = $(this).find('p').text().toLowerCase();
+
+            if (title.includes(query) || text.includes(query)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
+});
+</script>
+</body>
+</html>
